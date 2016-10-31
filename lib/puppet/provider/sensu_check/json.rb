@@ -10,7 +10,7 @@ Puppet::Type.type(:sensu_check).provide(:json) do
   include PuppetX::Sensu::ToType
   include PuppetX::Sensu::ProviderCreate
 
-  PROPERTIES = Puppet::Type.type(:sensu_check).validproperties.reject { |p| p == :ensure }
+  SENSU_CHECK_PROPERTIES = Puppet::Type.type(:sensu_check).validproperties.reject { |p| p == :ensure }
 
   def conf
     begin
@@ -32,7 +32,7 @@ Puppet::Type.type(:sensu_check).provide(:json) do
   end
 
   def is_property?(prop)
-    PROPERTIES.map(&:to_s).include? prop
+    SENSU_CHECK_PROPERTIES.map(&:to_s).include? prop
   end
 
   def custom
